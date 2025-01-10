@@ -1,236 +1,386 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional IT Resume</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Resume Generator</title>
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Arial', sans-serif;
+      }
 
-        .resume-container {
-            max-width: 850px;
-            margin: 40px auto;
-            background: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px 30px;
-            border-radius: 12px;
-        }
+      body {
+        background-color: #f7f7f7;
+        padding: 30px;
+      }
 
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        gap: 30px;
+      }
 
-        .header h1 {
-            font-size: 2.5rem;
-            margin: 0;
-            color: #007bff;
-        }
+      .input-section {
+        flex: 1;
+        background-color: #fff;
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      }
 
-        .header h2 {
-            font-size: 1.2rem;
-            font-weight: normal;
-            color: #555;
-            margin: 5px 0;
-        }
+      .preview-section {
+        flex: 1;
+        background-color: #fff;
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      }
 
-        .header p {
-            font-size: 0.95rem;
-            color: #666;
-        }
+      h1 {
+        text-align: center;
+        color: #2c3e50;
+        margin-bottom: 20px;
+      }
 
-        .section {
-            margin-bottom: 20px;
-        }
+      .section {
+        margin-bottom: 25px;
+      }
 
-        .section h2 {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            color: #333;
-            border-bottom: 2px solid #ddd;
-            padding-bottom: 5px;
-        }
+      .section-title {
+        font-size: 20px;
+        color: #34495e;
+        margin-bottom: 12px;
+        padding-bottom: 5px;
+        border-bottom: 2px solid #2980b9;
+      }
 
-        .section-content {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-        }
+      input,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
 
-        .left-column {
-            width: 48%;
-        }
+      textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
 
-        .right-column {
-            width: 48%;
-        }
+      button {
+        background-color: #2980b9;
+        color: #fff;
+        padding: 12px 22px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 5px;
+      }
 
-        .item {
-            margin-bottom: 15px;
-        }
+      button:hover {
+        background-color: #3498db;
+      }
 
-        .item h3 {
-            font-size: 1rem;
-            color: #007bff;
-            margin: 0 0 5px;
-        }
+      .dynamic-inputs {
+        margin-bottom: 20px;
+      }
 
-        .item p {
-            font-size: 0.9rem;
-            color: #555;
-            margin: 0;
-        }
+      .input-group {
+        border: 1px solid #ddd;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 4px;
+      }
 
-        .item ul {
-            margin: 5px 0 0;
-            padding-left: 20px;
-            font-size: 0.9rem;
-        }
+      .remove-btn {
+        background-color: #e74c3c;
+      }
 
-        .item ul li {
-            margin-bottom: 5px;
-        }
+      .remove-btn:hover {
+        background-color: #c0392b;
+      }
 
-        .skills ul {
-            display: flex;
-            flex-wrap: wrap;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+      /* Skills Section Styling */
+      .skills-inputs .input-group {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
 
-        .skills ul li {
-            background: #f0f0f0;
-            padding: 8px 12px;
-            margin: 5px;
-            border-radius: 5px;
-            font-size: 0.9rem;
-            color: #333;
-        }
+      .skills-inputs input {
+        width: 48%;
+      }
 
-        .contact {
-            text-align: right;
-        }
+      .skills-inputs button {
+        width: 100%;
+        background-color: #27ae60;
+        margin-top: 10px;
+      }
 
-        .contact p {
-            font-size: 0.9rem;
-            margin: 3px 0;
-            color: #555;
+      .skills-inputs button:hover {
+        background-color: #2ecc71;
+      }
+
+      /* Preview Styles */
+      .preview-content {
+        line-height: 1.8;
+      }
+
+      .preview-section h2 {
+        color: #2c3e50;
+        margin-bottom: 15px;
+      }
+
+      .preview-section h3 {
+        color: #34495e;
+        margin-bottom: 10px;
+      }
+
+      .preview-section p {
+        margin-bottom: 10px;
+      }
+
+      .print-btn {
+        background-color: #27ae60;
+        margin-top: 25px;
+      }
+
+      .print-btn:hover {
+        background-color: #219a52;
+      }
+
+      @media print {
+        .input-section {
+          display: none;
         }
+        .preview-section {
+          box-shadow: none;
+          padding: 0;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          flex-direction: column;
+        }
+      }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div class="resume-container">
-        <div class="header">
-            <h1>Luna Doe</h1>
-            <h2>Full Stack Developer</h2>
-            <p>Innovative and deadline-driven IT professional with 3+ years of experience in developing high-quality software solutions.</p>
-        </div>
+  </head>
 
-        <div class="contact">
-            <p>Email: Luna.doe@example.com</p>
-            <p>Phone: +123-456-7890</p>
-            <p>LinkedIn: linkedin.com/in/Lunadoe</p>
-            <p>GitHub: github.com/lunadoe</p>
+  <body>
+    <h1>Interactive CV Generator</h1>
+    <div class="container">
+      <div class="input-section">
+        <div class="section">
+          <h2 class="section-title">Personal Information</h2>
+          <input type="text" id="fullName" placeholder="Full Name" />
+          <input type="email" id="email" placeholder="Email" />
+          <input type="tel" id="phone" placeholder="Phone" />
+          <input type="text" id="location" placeholder="Location" />
         </div>
 
         <div class="section">
-            <h2>Education</h2>
-            <div class="section-content">
-                <div class="item">
-                    <h3>Bachelor of Technology in Computer Science</h3>
-                    <p>XYZ University, 2019 - 2023</p>
-                    <p>Graduated with First Class Honors</p>
-                </div>
-                <div class="item">
-                    <h3>High School Diploma</h3>
-                    <p>ABC High School, 2017 - 2019</p>
-                    <p>Science Stream with Distinction</p>
-                </div>
-            </div>
+          <h2 class="section-title">Professional Summary</h2>
+          <textarea
+            id="summary"
+            placeholder="Write a brief professional summary..."
+          ></textarea>
         </div>
 
         <div class="section">
-            <h2>Work Experience</h2>
-            <div class="section-content">
-                <div class="item">
-                    <h3>Frontend Developer</h3>
-                    <p>ABC Corp, Jan 2023 - Present</p>
-                    <ul>
-                        <li>Developed responsive web applications using React.js and Tailwind CSS.</li>
-                        <li>Optimized application performance, reducing load times by 25%.</li>
-                        <li>Collaborated with backend developers to integrate REST APIs.</li>
-                        <li>Mentored junior developers and conducted code reviews.</li>
-                    </ul>
-                </div>
-                <div class="item">
-                    <h3>Intern</h3>
-                    <p>XYZ Tech, May 2022 - Aug 2022</p>
-                    <ul>
-                        <li>Assisted in building e-commerce platforms using Angular and Firebase.</li>
-                        <li>Collaborated with cross-functional teams to enhance UI/UX.</li>
-                        <li>Performed unit testing and debugging for various modules.</li>
-                    </ul>
-                </div>
-            </div>
+          <h2 class="section-title">Work Experience</h2>
+          <div id="experienceInputs" class="dynamic-inputs"></div>
+          <button onclick="addExperience()">Add Experience</button>
         </div>
 
         <div class="section">
-            <h2>Skills</h2>
-            <div class="skills">
-                <ul>
-                    <li>JavaScript</li>
-                    <li>React.js</li>
-                    <li>Node.js</li>
-                    <li>HTML & CSS</li>
-                    <li>Angular</li>
-                    <li>Python</li>
-                    <li>SQL & NoSQL</li>
-                    <li>Docker</li>
-                    <li>Git & GitHub</li>
-                    <li>AWS</li>
-                </ul>
-            </div>
+          <h2 class="section-title">Education</h2>
+          <div id="educationInputs" class="dynamic-inputs"></div>
+          <button onclick="addEducation()">Add Education</button>
         </div>
 
         <div class="section">
-            <h2>Projects</h2>
-            <div class="section-content">
-                <div class="item">
-                    <h3>Portfolio Website</h3>
-                    <p>Developed a personal portfolio using React.js and deployed on Netlify.</p>
-                </div>
-                <div class="item">
-                    <h3>E-commerce Application</h3>
-                    <p>Built a full-stack application using MERN stack with payment gateway integration.</p>
-                </div>
-                <div class="item">
-                    <h3>Real-Time Chat App</h3>
-                    <p>Created a real-time chat application using WebSocket and Node.js.</p>
-                </div>
-            </div>
+          <h2 class="section-title">Certifications</h2>
+          <div id="certificationInputs" class="dynamic-inputs"></div>
+          <button onclick="addCertification()">Add Certification</button>
         </div>
 
         <div class="section">
-            <h2>Achievements</h2>
-            <div class="section-content">
-                <div class="item">
-                    <h3>Best Developer Award</h3>
-                    <p>XYZ University, 2023</p>
-                </div>
-                <div class="item">
-                    <h3>Hackathon Winner</h3>
-                    <p>National Coding Challenge, 2022</p>
-                </div>
-            </div>
+          <h2 class="section-title">Projects</h2>
+          <div id="projectInputs" class="dynamic-inputs"></div>
+          <button onclick="addProject()">Add Project</button>
         </div>
+
+        <div class="section skills-inputs">
+          <h2 class="section-title">Skills</h2>
+          <div id="skillsInputs" class="dynamic-inputs"></div>
+          <button onclick="addSkill()">Add Skill</button>
+        </div>
+
+        <button onclick="generateResume()" class="print-btn">
+          Generate CV
+        </button>
+      </div>
+
+      <div class="preview-section">
+        <h2>CV Preview</h2>
+        <div id="resumePreview" class="preview-content"></div>
+        <button onclick="window.print()" class="print-btn">Print CV</button>
+      </div>
     </div>
-</body>
+
+    <script>
+      function addExperience() {
+        const container = document.getElementById("experienceInputs");
+        const div = document.createElement("div");
+        div.className = "input-group";
+        div.innerHTML = `
+          <input type="text" placeholder="Company Name">
+          <input type="text" placeholder="Position">
+          <input type="text" placeholder="Duration">
+          <textarea placeholder="Description"></textarea>
+          <button onclick="this.parentElement.remove()" class="remove-btn">Remove</button>
+        `;
+        container.appendChild(div);
+      }
+
+      function addEducation() {
+        const container = document.getElementById("educationInputs");
+        const div = document.createElement("div");
+        div.className = "input-group";
+        div.innerHTML = `
+          <input type="text" placeholder="Institution">
+          <input type="text" placeholder="Degree">
+          <input type="text" placeholder="Year">
+          <input type="text" placeholder="GPA/Score">
+          <button onclick="this.parentElement.remove()" class="remove-btn">Remove</button>
+        `;
+        container.appendChild(div);
+      }
+
+      function addCertification() {
+        const container = document.getElementById("certificationInputs");
+        const div = document.createElement("div");
+        div.className = "input-group";
+        div.innerHTML = `
+          <input type="text" placeholder="Certification Name">
+          <input type="text" placeholder="Issuing Organization">
+          <input type="text" placeholder="Year">
+          <button onclick="this.parentElement.remove()" class="remove-btn">Remove</button>
+        `;
+        container.appendChild(div);
+      }
+
+      function addProject() {
+        const container = document.getElementById("projectInputs");
+        const div = document.createElement("div");
+        div.className = "input-group";
+        div.innerHTML = `
+          <input type="text" placeholder="Project Name">
+          <textarea placeholder="Project Description"></textarea>
+          <input type="text" placeholder="Technologies Used">
+          <button onclick="this.parentElement.remove()" class="remove-btn">Remove</button>
+        `;
+        container.appendChild(div);
+      }
+
+      function addSkill() {
+        const container = document.getElementById("skillsInputs");
+        const div = document.createElement("div");
+        div.className = "input-group";
+        div.innerHTML = `
+          <input type="text" placeholder="Skill Name">
+          <button onclick="this.parentElement.remove()" class="remove-btn">Remove</button>
+        `;
+        container.appendChild(div);
+      }
+
+      function generateResume() {
+        const preview = document.getElementById("resumePreview");
+
+        // Personal Information
+        const personalInfo = `
+          <h2>Personal Information</h2>
+          <p><strong>${document.getElementById("fullName").value}</strong></p>
+          <p>Email: ${document.getElementById("email").value}</p>
+          <p>Phone: ${document.getElementById("phone").value}</p>
+          <p>Location: ${document.getElementById("location").value}</p>
+        `;
+
+        // Professional Summary
+        const summary = `
+          <h2>Professional Summary</h2>
+          <p>${document.getElementById("summary").value}</p>
+        `;
+
+        // Work Experience
+        let experience = "<h2>Work Experience</h2>";
+        document.querySelectorAll("#experienceInputs .input-group").forEach((exp) => {
+          const inputs = exp.querySelectorAll("input, textarea");
+          experience += `
+            <h3>${inputs[0].value} - ${inputs[1].value}</h3>
+            <p>${inputs[2].value}</p>
+            <p>${inputs[3].value}</p>
+          `;
+        });
+
+        // Education
+        let education = "<h2>Education</h2>";
+        document.querySelectorAll("#educationInputs .input-group").forEach((edu) => {
+          const inputs = edu.querySelectorAll("input");
+          education += `
+            <h3>${inputs[0].value}</h3>
+            <p>${inputs[1].value}</p>
+            <p>${inputs[2].value} | GPA: ${inputs[3].value}</p>
+          `;
+        });
+
+        // Certifications
+        let certifications = "<h2>Certifications</h2>";
+        document
+          .querySelectorAll("#certificationInputs .input-group")
+          .forEach((cert) => {
+            const inputs = cert.querySelectorAll("input");
+            certifications += `
+            <h3>${inputs[0].value}</h3>
+            <p>${inputs[1].value} (${inputs[2].value})</p>
+          `;
+          });
+
+        // Projects
+        let projects = "<h2>Projects</h2>";
+        document.querySelectorAll("#projectInputs .input-group").forEach((proj) => {
+          const inputs = proj.querySelectorAll("input, textarea");
+          projects += `
+            <h3>${inputs[0].value}</h3>
+            <p>${inputs[1].value}</p>
+            <p><strong>Technologies:</strong> ${inputs[2].value}</p>
+          `;
+        });
+
+        // Skills
+        let skills = "<h2>Skills</h2>";
+        document.querySelectorAll("#skillsInputs .input-group").forEach((skill) => {
+          const input = skill.querySelector("input");
+          skills += `<p>${input.value}</p>`;
+        });
+
+        // Combine all sections
+        preview.innerHTML =
+          personalInfo + summary + experience + education + certifications + projects + skills;
+      }
+
+      // Add initial empty fields
+      addExperience();
+      addEducation();
+      addCertification();
+      addProject();
+      addSkill();
+    </script>
+  </body>
 </html>
