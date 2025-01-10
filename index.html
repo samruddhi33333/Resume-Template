@@ -75,11 +75,12 @@
       button {
         background-color: #2980b9;
         color: #fff;
-        padding: 12px 22px;
+        padding: 10px 20px; 
         border: none;
         border-radius: 4px;
         cursor: pointer;
         margin: 5px;
+        font-size: 16px;
       }
 
       button:hover {
@@ -104,13 +105,15 @@
         border: none;
         border-radius: 4px;
         cursor: pointer;
+        margin-top: 10px;
+        font-size: 16px;
       }
 
       .remove-btn:hover {
         background-color: #c0392b;
       }
 
-      /* Skills Section Styling */
+     
       .skills-inputs .input-group {
         display: flex;
         flex-wrap: wrap;
@@ -124,19 +127,19 @@
       .skills-inputs button {
         background-color: #27ae60;
         color: #fff;
-        padding: 12px 22px;
+        padding: 10px 20px; 
         border: none;
         border-radius: 4px;
         cursor: pointer;
         margin-top: 10px;
-        width: 100%;
+        font-size: 16px;
       }
 
       .skills-inputs button:hover {
         background-color: #2ecc71;
       }
 
-      /* Preview Styles */
+      
       .preview-content {
         line-height: 1.8;
       }
@@ -322,13 +325,13 @@
           <p>Location: ${document.getElementById("location").value}</p>
         `;
 
-        // Professional Summary
+       
         const summary = `
           <h2>Professional Summary</h2>
           <p>${document.getElementById("summary").value}</p>
         `;
 
-        // Work Experience
+       
         let experience = "<h2>Work Experience</h2>";
         document.querySelectorAll("#experienceInputs .input-group").forEach((exp) => {
           const inputs = exp.querySelectorAll("input, textarea");
@@ -339,7 +342,7 @@
           `;
         });
 
-        // Education
+       
         let education = "<h2>Education</h2>";
         document.querySelectorAll("#educationInputs .input-group").forEach((edu) => {
           const inputs = edu.querySelectorAll("input");
@@ -350,7 +353,7 @@
           `;
         });
 
-        // Certifications
+        
         let certifications = "<h2>Certifications</h2>";
         document
           .querySelectorAll("#certificationInputs .input-group")
@@ -362,7 +365,7 @@
           `;
           });
 
-        // Projects
+       
         let projects = "<h2>Projects</h2>";
         document.querySelectorAll("#projectInputs .input-group").forEach((proj) => {
           const inputs = proj.querySelectorAll("input, textarea");
@@ -373,19 +376,19 @@
           `;
         });
 
-        // Skills
+        
         let skills = "<h2>Skills</h2>";
         document.querySelectorAll("#skillsInputs .input-group").forEach((skill) => {
           const input = skill.querySelector("input");
           skills += `<p>${input.value}</p>`;
         });
 
-        // Combine all sections
+        
         preview.innerHTML =
           personalInfo + summary + experience + education + certifications + projects + skills;
       }
 
-      // Add initial empty fields
+     
       addExperience();
       addEducation();
       addCertification();
